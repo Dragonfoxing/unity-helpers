@@ -435,8 +435,8 @@ fabric.properties
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
-# Never ignore Asset meta data
-!/[Aa]ssets/**/*.meta
+# For once, we do want to ignore asset metadata.
+# !/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
