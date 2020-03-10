@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class CameraLerpBetweenTwoTargets : MonoBehaviour
 {
@@ -48,10 +48,19 @@ public class CameraLerpBetweenTwoTargets : MonoBehaviour
     // Divide our half-width by the camera.aspect to get the orthoHeight we need.
     private float GetRequiredOrthoSize()
     {
-        var xMedian = Mathf.Abs(firstTarget.position.x - secondTarget.position.x) + orthoPadding;
-        xMedian /= 2;
-
-        var orthoSize = xMedian / cam.aspect;
-        return (orthoSize > minOrthoSize) ? orthoSize : minOrthoSize;
+        var halfWidth = Mathf.Abs(firstTarget.position.x - secondTarget.position.x) + orthoPadding;
+        halfWidth /= 2;
+        halfWidth /= cam.aspect;
+        
+        var halfHeight = Mathf.Abs(firstTarget.position.y - secondTarget.position.y) + orthoPadding;
+        halfHeight /= 2;
+        
+        
+        // Now we have two orthographicSize values.
+        // We want to use whichever is larger.
+        if (halfWidth > minOrthoSize || halfHeight > minOrthoSize) return (halfWidth > halfHeight) ? halfWidth : halfHeight;
+        
+        // If neither are larger than the minOrthoSize, we default to return it instead.
+        return minOrthoSize;
     }
 }
