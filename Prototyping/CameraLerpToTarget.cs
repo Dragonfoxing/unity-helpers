@@ -19,8 +19,8 @@ namespace Dragonfoxing.UnityCSharp
             if (target == null) hasTarget = false;
             else hasTarget = true;
         }
-        // Update is called once per frame
-        void Update()
+        
+        void LateUpdate()
         {
             if (hasTarget)
             {
